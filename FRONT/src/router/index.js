@@ -44,7 +44,7 @@ const router = createRouter({
 router.beforeEach((to, _from, next) => {
     const title = to.meta.title;
     if (title) {
-        document.title = `${title} - 粮仓可视化大屏`;
+        document.title = `${title} - 谷仓视界 · GranaryScope`;
     }
     next();
 });
