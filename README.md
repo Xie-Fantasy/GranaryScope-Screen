@@ -1,6 +1,7 @@
-# LiangCang · 粮仓可视化大屏
+# GranaryScope · 谷仓视界
 
-**用数据看见仓储，用视觉连接现场。**
+**谷仓视界 · 智慧粮仓可视化大屏**  
+用数据看见仓储，用视觉连接现场。
 
 基于 Vue 3、TypeScript 与 ECharts 的粮仓数据可视化大屏，结合 FastAPI、MediaMTX 和 YOLO 视频检测，探索智慧仓储、工业可视化与数字孪生场景的交互展示。
 
