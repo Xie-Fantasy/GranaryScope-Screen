@@ -1,0 +1,162 @@
+// ============================================
+// Shared structural mixins - restrained industrial visual language
+// ============================================
+
+@use './variables.scss' as *;
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@mixin frosted-glass {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-default);
+  border-radius: $radius-xl;
+}
+
+@mixin card {
+  @include frosted-glass;
+  padding: $spacing-xl $spacing-2xl;
+  box-shadow: none;
+  transition: background-color $transition-fast, border-color $transition-fast;
+
+  &:hover {
+    background: var(--bg-hover);
+  }
+}
+
+@mixin custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: color-mix(in srgb, var(--text-primary) 5%, transparent);
+    border-radius: 2px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--primary) 30%, transparent);
+    border-radius: 2px;
+
+    &:hover {
+      background: color-mix(in srgb, var(--primary) 50%, transparent);
+    }
+  }
+}
+
+@mixin hide-scrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@mixin text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin text-ellipsis-multi($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@mixin text-highlight {
+  color: var(--primary);
+  font-weight: $font-weight-semibold;
+}
+
+@mixin metric-value {
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-semibold;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+
+@mixin card-title {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+@mixin badge($bg-color: var(--primary-soft), $text-color: var(--primary)) {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  font-size: $font-size-xs;
+  color: $text-color;
+  background: $bg-color;
+  border-radius: $radius-sm;
+}
+
+@mixin highlight-border {
+  border-left: 2px solid var(--primary);
+  background: var(--primary-soft);
+  box-shadow: $box-shadow-highlight;
+}
+
+@mixin list-item-hover {
+  transition: background-color $transition-fast;
+
+  &:hover {
+    background: var(--primary-soft);
+    cursor: pointer;
+  }
+}
+
+@mixin fade-in($duration: 300ms) {
+  animation: fadeIn $duration cubic-bezier(.2, .8, .2, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@mixin tech-line($color: var(--primary)) {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: $color;
+  margin-top: $spacing-sm;
+}
+
+@mixin table-stripe {
+  &:nth-child(even) {
+    background: color-mix(in srgb, var(--text-primary) 3%, transparent);
+  }
+}

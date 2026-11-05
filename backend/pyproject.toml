@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling==1.27.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "liangcang-video-detection-backend"
+version = "0.1.0"
+description = "FastAPI backend skeleton for the LiangCang video detection pipeline"
+readme = "README.md"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+  "fastapi==0.141.1",
+  "pydantic-settings==2.8.1",
+  "uvicorn[standard]==0.52.4",
+]
+
+[project.optional-dependencies]
+ai = [
+  "av==18.1.0",
+  "numpy==2.2.6",
+  "opencv-python==4.14.0.94",
+  "pillow==11.3.0",
+  "ultralytics==8.4.138",
+  # ultralytics 的 track 模式需要 lap 求解器；缺失时运行期自动安装会失败于离线环境
+  "lap==0.5.13",
+]
+test = [
+  "httpx==0.28.1",
+  "pytest==8.3.5",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/liangcang_backend"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]

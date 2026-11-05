@@ -1,0 +1,87 @@
+# MediaMTX P1 single-camera skeleton.
+#
+# This file intentionally contains no camera address, account, password, or
+# token.  The deployment process must inject the source only at runtime with:
+# MTX_PATHS_CAMERA1_SOURCE=<RTSP_URL>
+#
+# Based on MediaMTX v1.20.x configuration fields. Keep the executable and this
+# file on the same pinned minor version; see VERSION.md before upgrading.
+
+logLevel: info
+logDestinations: [stdout]
+logStructured: false
+
+# The P1 media surface is deliberately limited to RTSP ingress/internal reads
+# and WebRTC/WHEP browser reads. Management, recording and unrelated delivery
+# protocols remain disabled.
+api: false
+metrics: false
+pprof: false
+playback: false
+
+rtsp: true
+rtspTransports: [tcp]
+# Only local services (for example the later AI worker) can consume the
+# normalized RTSP path. The camera is pulled outbound by MediaMTX.
+rtspAddress: 127.0.0.1:8554
+
+rtmp: false
+hls: false
+srt: false
+moq: false
+
+webrtc: true
+# WHEP signalling endpoint: http://<MEDIA_LAN_HOST>:8889/camera1/whep
+webrtcAddress: :8889
+webrtcEncryption: false
+# Do not infer candidates from every adapter. At deployment inject the single
+# LAN-B address through MTX_WEBRTCADDITIONALHOSTS.
+webrtcIPsFromInterfaces: false
+# Keep the offline/default configuration startable without advertising any
+# LAN address. Deployment replaces this array through
+# MTX_WEBRTCADDITIONALHOSTS with the MediaMTX machine's LAN-B address.
+webrtcAdditionalHosts: [127.0.0.1]
+# UDP is the only P1 ICE transport. Do not configure public STUN/TURN servers:
+# the product is deployed on a fully offline LAN.
+webrtcLocalUDPAddress: :8189
+webrtcLocalTCPAddress: ""
+webrtcICEServers2: []
+# Local development is deliberately limited to the Vite origins below. Field
+# deployment replaces this list through MTX_WEBRTCALLOWORIGINS; never use '*'.
+webrtcAllowOrigins:
+  - "http://localhost:5173"
+  - "http://127.0.0.1:5173"
+
+# This deployment is a read-only media proxy. Its RTSP listener is loopback
+# only and WHEP exposure is restricted by LAN firewall rules documented in
+# README.md.
+authMethod: internal
+authInternalUsers:
+  - user: any
+    pass:
+    ips: []
+    permissions:
+      - action: read
+        path: camera1
+  # The inert configuration can receive a local mock publisher for offline
+  # verification. This does not open publishing to the LAN: the RTSP listener
+  # itself is bound to loopback and these IP rules are loopback-only.
+  - user: any
+    pass:
+    ips: [127.0.0.1, "::1"]
+    permissions:
+      - action: publish
+        path: camera1
+
+paths:
+  # Keep this key free of underscores: current MediaMTX environment mapping
+  # uses underscores as path-field separators, allowing the unambiguous runtime
+  # override MTX_PATHS_CAMERA1_SOURCE.
+  camera1:
+    # The default is intentionally inert. Runtime environment must override
+    # this field with MTX_PATHS_CAMERA1_SOURCE; do not use YAML interpolation
+    # for secrets.
+    source: publisher
+    sourceOnDemand: false
+    rtspTransport: tcp
+    # No P1 transcoding, recording, forwarding, hooks, or quality renditions.

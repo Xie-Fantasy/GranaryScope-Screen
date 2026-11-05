@@ -1,0 +1,3 @@
+"""LiangCang video detection backend."""
+
+__version__ = "0.1.0"

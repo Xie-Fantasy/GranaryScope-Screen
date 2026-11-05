@@ -1,0 +1,103 @@
+// Shared visual primitives for both storage pages.
+// Runtime colors always resolve through the Theme Foundation token contract.
+
+@use './variables.scss' as *;
+
+@mixin panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-default);
+  border-radius: $radius-md;
+  box-shadow: none;
+}
+
+@mixin panel-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  min-height: 40px;
+  padding: $spacing-sm $spacing-lg;
+  color: var(--text-primary);
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  letter-spacing: .02em;
+  line-height: 1.4;
+  border-bottom: 1px solid var(--border-default);
+
+  &::before {
+    display: none;
+  }
+}
+
+// Shared frame for business-panel headings; actions remain in their own slots/rows.
+@mixin panel-header {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  margin: 0 $spacing-md;
+  border-bottom: 1px solid var(--border-strong);
+}
+
+// Chart title bars have a fixed height and a full-width themed surface.
+// The chart canvas/content below remains transparent.
+@mixin chart-header {
+  @include panel-header;
+  flex: 0 0 48px;
+  height: 48px;
+  margin: 0;
+  padding: 0 $spacing-md;
+  background: var(--bg-panel-elevated);
+}
+
+@mixin filter-control {
+  min-height: 26px;
+  padding: 3px $spacing-sm;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: $radius-sm;
+  transition: background-color $transition-fast, border-color $transition-fast, color $transition-fast;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--text-primary);
+    background: var(--bg-hover);
+  }
+
+  &.is-active {
+    color: var(--primary);
+    background: var(--primary-soft);
+    border-color: var(--primary-line);
+  }
+}
+
+@mixin status-tag($tone: neutral) {
+  display: inline-flex;
+  align-items: center;
+  min-height: 20px;
+  padding: 2px $spacing-sm;
+  font-size: $font-size-xs;
+  font-weight: 500;
+  line-height: 1.4;
+  border-radius: 3px;
+  border: 1px solid color-mix(in srgb, var(--status-tag-color) 28%, transparent);
+  color: var(--status-tag-color);
+  background: color-mix(in srgb, var(--status-tag-color) 12%, transparent);
+
+  @if $tone == success {
+    --status-tag-color: var(--success);
+  } @else if $tone == warning {
+    --status-tag-color: var(--warning);
+  } @else if $tone == danger {
+    --status-tag-color: var(--danger);
+  } @else if $tone == info {
+    --status-tag-color: var(--info);
+  } @else if $tone == offline {
+    --status-tag-color: var(--offline);
+  } @else {
+    --status-tag-color: var(--text-tertiary);
+  }
+}

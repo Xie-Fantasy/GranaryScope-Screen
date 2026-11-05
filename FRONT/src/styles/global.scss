@@ -1,0 +1,236 @@
+// ============================================
+// Runtime token contract - Visual Spec v2.0 is the source of truth.
+// ============================================
+
+@use './variables.scss' as *;
+@use './mixins.scss' as *;
+
+// Shared semantic, text, surface-alias and chart-support tokens.
+:root {
+  --text-primary: #F1F5F4;
+  --text-secondary: #B3C0C1;
+  --text-tertiary: #7F9194;
+  --text-disabled: #56676A;
+  --text-inverse: #071311;
+
+  --success: #38C98B;
+  --warning: #E8B33F;
+  --danger: #EF5A5A;
+  --danger-strong: #FF4747;
+  --info: #46BFD8;
+  --offline: #73818A;
+  --disabled: #52616A;
+
+  --surface-page: var(--bg-page);
+  --surface-page-2: var(--bg-page-2);
+  --surface-panel: var(--bg-panel);
+  --surface-panel-elevated: var(--bg-panel-elevated);
+  --surface-card: var(--bg-card);
+  --surface-hover: var(--bg-hover);
+  --surface-active: var(--bg-active);
+  --border-subtle: var(--border-default);
+  --border-focus: var(--primary-line);
+
+  --status-success-bg: color-mix(in srgb, var(--success) 12%, transparent);
+  --status-warning-bg: color-mix(in srgb, var(--warning) 12%, transparent);
+  --status-danger-bg: color-mix(in srgb, var(--danger) 12%, transparent);
+  --status-info-bg: color-mix(in srgb, var(--info) 12%, transparent);
+  --status-offline-bg: color-mix(in srgb, var(--offline) 12%, transparent);
+
+  --chart-axis-label: var(--text-tertiary);
+  --chart-tooltip-bg: rgba(8, 20, 24, 0.96);
+  --chart-tooltip-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
+}
+
+// Deep blue is the documented default mode. Keeping :root in the selector
+// provides a CSS fallback even before the bootstrap script assigns data-theme.
+:root,
+:root[data-theme='blue'] {
+  --bg-page: #071321;
+  --bg-page-2: #091827;
+  --bg-panel: #101F30;
+  --bg-panel-elevated: #142638;
+  --bg-card: #172B3E;
+  --bg-hover: #1D3448;
+  --bg-active: rgba(44, 180, 222, 0.12);
+  --border-default: rgba(151, 183, 210, 0.14);
+  --border-strong: rgba(91, 182, 222, 0.25);
+  --grid-line: rgba(178, 203, 223, 0.07);
+
+  --primary: #35BCE3;
+  --primary-hover: #4CC9EA;
+  --primary-active: #239BC1;
+  --primary-muted: #287A9C;
+  --primary-soft: rgba(53, 188, 227, 0.12);
+  --primary-line: rgba(53, 188, 227, 0.42);
+
+  --theme-accent: #53D4DA;
+  --theme-secondary: #4F9FD6;
+  --theme-muted: #31566F;
+  --theme-gold: #E9B949;
+  --theme-inactive: #70869A;
+
+  --chart-series-1: #35BCE3;
+  --chart-series-2: #E8B33F;
+  --chart-series-3: #EF5A5A;
+  --chart-series-4: #53D4DA;
+  --chart-series-5: #6E91AC;
+  --chart-series-6: #38C98B;
+
+  // 模块按钮图片：蓝色主题
+  --btn-module-default: url('/image/button/menu-btn-blue.png');
+  --btn-module-active: url('/image/button/menu-btn-hover-blue.png');
+}
+
+:root[data-theme='green'] {
+  --bg-page: #031B1A;
+  --bg-page-2: #062725;
+  --bg-panel: #0A302E;
+  --bg-panel-elevated: #0D3937;
+  --bg-card: #113F3C;
+  --bg-hover: #164A46;
+  --bg-active: rgba(49, 205, 166, 0.12);
+  --border-default: rgba(151, 208, 194, 0.14);
+  --border-strong: rgba(122, 215, 191, 0.26);
+  --grid-line: rgba(164, 211, 201, 0.07);
+
+  --primary: #35D6AE;
+  --primary-hover: #4DE6BE;
+  --primary-active: #24B992;
+  --primary-muted: #1B7D69;
+  --primary-soft: rgba(53, 214, 174, 0.12);
+  --primary-line: rgba(53, 214, 174, 0.45);
+
+  --theme-accent: #62E6C3;
+  --theme-secondary: #42C7B4;
+  --theme-muted: #276A5E;
+  --theme-gold: #E9B949;
+  --theme-inactive: #76958E;
+
+  --chart-series-1: #35D6AE;
+  --chart-series-2: #E8B33F;
+  --chart-series-3: #EF5A5A;
+  --chart-series-4: #59C7B7;
+  --chart-series-5: #79A99E;
+  --chart-series-6: #38C98B;
+
+  // 模块按钮图片：绿色主题
+  --btn-module-default: url('/image/button/menu-btn-green.png');
+  --btn-module-active: url('/image/button/menu-btn-hover-green.png');
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  font-family: $font-family;
+  color: var(--text-primary);
+  background-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+  @include hide-scrollbar;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(var(--grid-line) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.text-highlight { @include text-highlight; }
+.text-ellipsis { @include text-ellipsis; }
+.flex { display: flex; }
+.flex-center { @include flex-center; }
+.flex-between { @include flex-between; }
+.flex-column { @include flex-column; }
+.flex-1 { flex: 1; }
+.gap-sm { gap: $spacing-sm; }
+.gap-md { gap: $spacing-md; }
+.gap-lg { gap: $spacing-lg; }
+.gap-xl { gap: $spacing-xl; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: $spacing-md $spacing-lg;
+  text-align: left;
+}
+
+th {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: var(--text-secondary);
+  background: var(--primary-soft);
+}
+
+tr { @include table-stripe; }
+@include custom-scrollbar;
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover { color: var(--primary-hover); }
+}
+
+button,
+input,
+textarea {
+  font-family: $font-family;
+  outline: none;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.fade-enter-active,
+.fade-leave-active { transition: opacity $transition-normal; }
+
+.fade-enter-from,
+.fade-leave-to { opacity: 0; }
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track { background: color-mix(in srgb, var(--text-primary) 5%, transparent); }
+
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--primary) 30%, transparent);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--primary) 50%, transparent); }

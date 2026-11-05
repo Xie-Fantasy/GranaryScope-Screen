@@ -1,0 +1,79 @@
+// ============================================
+// Design-system structural tokens and SCSS compatibility aliases.
+// Runtime colour tokens live in global.scss and resolve through CSS custom
+// properties, so a component never needs a green/blue conditional branch.
+// ============================================
+
+// Theme-aware compatibility aliases for the existing component surface.
+$bg-page: var(--bg-page);
+$bg-card: var(--bg-card);
+$bg-card-hover: var(--bg-hover);
+$border-card: var(--border-default);
+$bg-frosted: var(--bg-panel);
+
+$primary: var(--primary);
+$secondary: var(--chart-series-4);
+$warning: var(--warning);
+// Temporary legacy alias: continuous two-day states now use the shared danger
+// semantic token rather than retaining a pink theme token.
+$pink: var(--danger);
+$danger: var(--danger);
+$success: var(--success);
+$white: var(--text-primary);
+
+$text-main: var(--text-primary);
+$text-sub: var(--text-secondary);
+$text-disabled: var(--text-disabled);
+
+// Typography
+$font-family: 'DIN Alternate', 'Inter', 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-md: 16px;
+$font-size-lg: 18px;
+$font-size-xl: 20px;
+$font-size-2xl: 26px;
+$font-size-3xl: 32px;
+
+$font-weight-regular: 400;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// 4 / 8 px spacing grid and restrained radii.
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-lg: 16px;
+$spacing-xl: 20px;
+$spacing-2xl: 24px;
+
+$radius-sm: 4px;
+$radius-md: 6px;
+$radius-lg: 6px;
+$radius-xl: 6px;
+
+// Compatibility aliases deliberately remove legacy default glow.
+$border-glow: 1px solid var(--border-default);
+$box-shadow-glow: none;
+$box-shadow-glow-hover: none;
+$box-shadow-highlight: 0 0 12px color-mix(in srgb, var(--primary) 18%, transparent);
+
+// Layout
+$design-width: 1920px;
+$design-height: 1080px;
+$header-height: 90px;
+
+// Motion
+$transition-fast: 150ms cubic-bezier(.2, .8, .2, 1);
+$transition-normal: 240ms cubic-bezier(.2, .8, .2, 1);
+$transition-slow: 500ms cubic-bezier(.2, .8, .2, 1);
+
+// CSS-variable palette for future ECharts option builders.
+$chart-colors: (
+  var(--chart-series-1),
+  var(--chart-series-2),
+  var(--chart-series-3),
+  var(--chart-series-4),
+  var(--chart-series-5),
+  var(--chart-series-6)
+);
