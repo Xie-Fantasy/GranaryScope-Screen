@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/assets/logo.png" alt="GranaryScope 谷仓视界 Logo" width="180" />
+</p>
+
 # GranaryScope · 谷仓视界
 
 **谷仓视界 · 智慧粮仓可视化大屏**  
