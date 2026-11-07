@@ -1,13 +1,28 @@
-<p align="center">
-  <img src="docs/assets/logo-zh.png" alt="谷仓视界 Logo" width="600" />
-</p>
+<div align="center">
+
+<img src="docs/assets/logo-zh.png" alt="谷仓视界 Logo" width="500" />
 
 # GranaryScope · 谷仓视界
 
+**智慧粮仓可视化大屏 · Vue 3 + ECharts + YOLO**
+
+用数据看见仓储，用视觉连接现场。
+
+![Vue 3](https://img.shields.io/badge/Vue-3-42b883?logo=vuedotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-typed-3178c6?logo=typescript&logoColor=white)
+![ECharts](https://img.shields.io/badge/ECharts-6-aa344d?logo=apacheecharts&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-backend-009688?logo=fastapi&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-blue)
+
+[项目预览](#项目预览) · [功能介绍](#你可以探索什么) · [快速开始](#快速体验前端) · [视频与检测](#接入视频和-yolo) · [项目边界](#当前边界)
+
 **简体中文** | [English](README.en.md)
 
-**谷仓视界 · 智慧粮仓可视化大屏**  
-用数据看见仓储，用视觉连接现场。
+</div>
+
+**作者与维护：Xie-Fantasy** ｜ [GitHub 主页](https://github.com/Xie-Fantasy) ｜ [项目源码](https://github.com/Xie-Fantasy/GranaryScope-Screen)
+
+## 项目简介
 
 基于 Vue 3、TypeScript 与 ECharts 的粮仓数据可视化大屏，结合 FastAPI、MediaMTX 和 YOLO 视频检测，探索智慧仓储、工业可视化与数字孪生场景的交互展示。
 
