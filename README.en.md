@@ -1,13 +1,28 @@
-<p align="center">
-  <img src="docs/assets/logo-en.png" alt="GranaryScope logo" width="600" />
-</p>
+<div align="center">
+
+<img src="docs/assets/logo-en.png" alt="GranaryScope logo" width="500" />
 
 # GranaryScope
 
+**Smart Grain Storage Dashboard · Vue 3 + ECharts + YOLO**
+
+See storage through data. Connect with the site through vision.
+
+![Vue 3](https://img.shields.io/badge/Vue-3-42b883?logo=vuedotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-typed-3178c6?logo=typescript&logoColor=white)
+![ECharts](https://img.shields.io/badge/ECharts-6-aa344d?logo=apacheecharts&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-backend-009688?logo=fastapi&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-blue)
+
+[Screenshots](#screenshots) · [Features](#features) · [Quick start](#quick-start-frontend) · [Video & detection](#connect-video-and-yolo) · [Limitations](#scope-and-limitations)
+
 [简体中文](README.md) | **English**
 
-**GranaryScope · Smart Grain Storage Dashboard**  
-See storage through data. Connect with the site through vision.
+</div>
+
+**Author & maintainer: Xie-Fantasy** ｜ [GitHub profile](https://github.com/Xie-Fantasy) ｜ [Source code](https://github.com/Xie-Fantasy/GranaryScope-Screen)
+
+## About
 
 GranaryScope is a grain storage visualization dashboard built with Vue 3, TypeScript, and ECharts. It combines FastAPI, MediaMTX, and YOLO video detection to explore interfaces for smart grain storage, industrial visualization, and digital-twin scenarios.
 
