@@ -1,8 +1,10 @@
 <p align="center">
-  <img src="docs/assets/logo.png" alt="GranaryScope 谷仓视界 Logo" width="180" />
+  <img src="docs/assets/logo-zh.png" alt="谷仓视界 Logo" width="600" />
 </p>
 
 # GranaryScope · 谷仓视界
+
+**简体中文** | [English](README.en.md)
 
 **谷仓视界 · 智慧粮仓可视化大屏**  
 用数据看见仓储，用视觉连接现场。
